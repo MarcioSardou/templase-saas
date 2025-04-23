@@ -8,8 +8,6 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const testeId = body?.testeId;
 
-
-
     const price = process.env.STRIPE_SUBSCRIPTION_PRICE_ID;
 
     if (!price) {
@@ -34,6 +32,8 @@ export async function POST(req: NextRequest) {
       cancel_url: `${req.headers.get("origin")}/`,
       metadata: {
         testeId,
+        price,
+        userId
       },
       customer: customerId,
     });
