@@ -25,10 +25,11 @@ export async function POST(req: NextRequest) {
     switch (event.type) {
       case "checkout.session.completed":
         const metadata = event.data.object.metadata;
-        if (metadata?.priceId === process.env.STRIPE_PRODUCT_PRICE_ID) {
+        console.log("metadata", metadata);
+        if (metadata?.price === process.env.STRIPE_PRODUCT_PRICE_ID) {
           await handleStripePayment(event);
         }
-        if (metadata?.priceId === process.env.STRIPE_SUBSCRIPTION_PRICE_ID) {
+        if (metadata?.price === process.env.STRIPE_SUBSCRIPTION_PRICE_ID) {
           await handleStripeSubscription(event);
         }
         break;
@@ -42,6 +43,7 @@ export async function POST(req: NextRequest) {
         console.log("ENVIAR EMAIL PARA USUARIO AVISANDO Q PAGAMENTO FALHOU");
         break;
       case "customer.subscription.created":
+
         console.log("ENVIAR EMAIL PARA USUARIO AVISANDO Q ASSINATURA CRIADA");
         break;
       case "customer.subscription.deleted":

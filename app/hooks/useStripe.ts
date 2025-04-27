@@ -73,6 +73,7 @@ export function useStripe() {
       });
   
       const data = await response.json();
+      console.log(await data);
   
       if (data.url) {
         window.location.href = data.url;

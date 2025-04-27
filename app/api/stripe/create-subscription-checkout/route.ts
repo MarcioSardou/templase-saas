@@ -5,11 +5,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const testeId = body?.testeId;
+    // const body = await req.json();
+    // const testeId = body?.testeId;
+    const {testeId } = await req.json();
 
     const price = process.env.STRIPE_SUBSCRIPTION_PRICE_ID;
-
+    console.log("price", price);
     if (!price) {
       return NextResponse.json({ error: "Price not found" }, { status: 500 });
     }

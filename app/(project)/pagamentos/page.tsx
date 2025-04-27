@@ -20,7 +20,7 @@ export default function Pagamentos() {
       </button>
       <button
         className="border rounded-md px-1 cursor-pointer"
-        onClick={() => createSubscriptionStripeCheckout({ testId: "123" })}
+        onClick={() => createSubscriptionStripeCheckout({ testId: "12345" })}
       >
         Criar assinatura Stripe
       </button>

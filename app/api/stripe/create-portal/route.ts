@@ -25,6 +25,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Customer not found" }, { status: 404 });
     }
 
+    console.log(customerId, "customerId");
+    console.log(userId, "userId");
+    console.log(userRef, "userRef");
+    console.log(userDoc, "userDoc");
+
     const portalSession = await stripe.billingPortal.sessions.create({
       customer: customerId,
       return_url: `${req.headers.get("origin")}/dashboard`,
